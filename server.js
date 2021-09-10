@@ -5,10 +5,7 @@ const app = express();
 
 app.use(fileUpLoad());
 
-app.get('/myvideo',(req,res)=>{
-  
-  res.send();
-})
+
 
 
 app.post('/myvideo',(req,res)=>{
@@ -25,9 +22,9 @@ app.post('/myvideo',(req,res)=>{
     }
 
     //filePath is from uploads folder
-    res.json({fileName:file.name, filePath: `/uploads/${file.name}`})
+   return res.json({fileName:file.name, filePath: `/uploads/${file.name}`})
   })
-  return res;
+  
 })
 
 app.get('/api/customer', (req,res)=>{
