@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './homePage.css';
 import userIcon from './userIcon.png';  
+import { Route, Switch} from "react-router-dom";
+import VideoSlide from "../videoSlide/videoSlide"
 
 class MemberSideBar extends Component {
     constructor(){
@@ -22,10 +24,13 @@ class MemberSideBar extends Component {
       <img className='userSignUpIcon' src={userIcon} />
       <h2>Customers</h2>
       
-      <a href='http://localhost:5000/api/customers'>
+      <a href='http://localhost:5000/api/customer'>
         <button className='buttonLogin'>Login</button>
     </a>
-        <button className='buttonMyVideos'>My Videos</button>
+      <a href='http://localhost:3000/myvideo'>
+    <button className='buttonMyVideos'>My Videos</button>
+     </a>
+        
         <button className='buttonSetting'>Setting</button>
         <h3>
             {this.state.customers.map(customer => 
@@ -33,6 +38,8 @@ class MemberSideBar extends Component {
                     {customer.firstName}  {customer.lastName}
                 </li>)}
         </h3>
+       
+      <VideoSlide/>
     </div>
   );
 }
