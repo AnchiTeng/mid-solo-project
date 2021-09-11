@@ -6,13 +6,23 @@ const app = express();
 app.use(fileUpLoad());
 
 
-
+app.get('/myvideo',(req,res)=>{
+  
+ const test = [{test:1}]
+ 
+  res.send(test);
+  
+})
 
 app.post('/myvideo',(req,res)=>{
   if(req.files === null){
     return res.status(400).json({msg:'no file upload'});
   }
   const file = req.files.file;
+  console.log('list',req.body)
+ 
+
+  
 
   //sending uploadfiles to uploads folder
   file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
@@ -20,12 +30,23 @@ app.post('/myvideo',(req,res)=>{
       console.error(err);
       return res.status(500).send(err);
     }
-
+    
+    let today = new Date().toISOString().slice(0, 10)
     //filePath is from uploads folder
-   return res.json({fileName:file.name, filePath: `/uploads/${file.name}`})
+   res.json({fileName:file.name, filePath: `/uploads/${file.name}`,uploadDate:today});
+   
+
+  
+
+   
+   
   })
   
 })
+
+
+
+
 
 app.get('/api/customer', (req,res)=>{
     const customers = [
