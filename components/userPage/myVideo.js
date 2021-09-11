@@ -3,13 +3,16 @@ import axios from "axios";
 
 
 const MyVideo = ()=> {
+  
   const [ file, setFile] = useState('');
   const [ filename, setFilename] = useState('abcd');
-  const [uploadedFile, setUploadedFile] = useState({});
-
+  const [ uploadedFile, setUploadedFile] = useState({});
+  //const [fileList,setFileList] = useState([]);
+  
   const onChange= e =>{
       setFile(e.target.files[0]);
       setFilename(e.target.files[0].name);
+      //setFileList(e.target.files[0].fileList);
   }
 
   const onSubmit = async e => {
@@ -24,9 +27,10 @@ const MyVideo = ()=> {
             
         });
        
-        const { fileName, filePath } = res.data;
+        const { fileName, filePath ,uploadDate} = res.data;
        
-        setUploadedFile({ fileName, filePath });
+        setUploadedFile({ fileName, filePath ,uploadDate});
+        //setFileList.push(fileName, filePath ,uploadDate)
       } catch(err) {
         if (err.response.status === 500) {
             console.log('There was a problem with the server');
@@ -38,6 +42,9 @@ const MyVideo = ()=> {
           //setUploadPercentage(0)
         }
       };
+      
+      
+
   
 
 
@@ -55,21 +62,32 @@ const MyVideo = ()=> {
           value='Upload'
           className='btn btn-primary btn-block mt-4'
         />
+       
      </form>
      {uploadedFile ? (
         <div className='row mt-5'>
           <div className='col-md-6 m-auto'>
-            <h3 className='text-center'>{uploadedFile.fileName}</h3>
+            <h3 className='text-center'>{uploadedFile.uploadDate} {uploadedFile.fileName} </h3>
             
-
-            <video width="320" height="240" controls>
+            
+            <video key={uploadedFile.filePath} width="320" height="240" controls>
             <source src={uploadedFile.filePath} type="video/mp4" />
              </video>
+
+            <h2> 
+              video list: {uploadedFile.fileName}  
+              <input
+          type='submit'
+          value='delete'
+          className='btn btn-primary btn-block mt-4'
+        />
+            </h2>
+             
           </div>
         </div>
       ) : null}
 
-
+        
 
     </Fragment>
   )
