@@ -20,7 +20,7 @@ app.post('/myvideo',(req,res)=>{
     return res.status(400).json({msg:'no file upload'});
   }
   const file = req.files.file;
-  
+  console.log('list',req.body)
  
 
   
