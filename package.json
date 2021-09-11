@@ -18,5 +18,10 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
+  },
+  "proxy": {
+    "/*": {
+      "target": "http://localhost:5000"
+    }
   }
 }
