@@ -8,7 +8,8 @@ class MemberSideBar extends Component {
     constructor(){
     super();
     this.state = {
-      customers: []  
+      customers: [],
+        
     }
     }
     componentDidMount(){

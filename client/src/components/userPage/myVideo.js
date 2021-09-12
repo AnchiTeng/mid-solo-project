@@ -1,12 +1,43 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
 
+//9/12: can upload and display multiple videos. How to delete specific video? how to combine display and upload files to upload folder?
+
 const MyVideo = () => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("abcd");
   const [uploadedFile, setUploadedFile] = useState({});
   //const [fileList,setFileList] = useState([]);
   console.log('uploadedFile :>> ', uploadedFile);
+
+  const [ selectedFiles, setSelectedFiles ] = useState([]);
+
+	const handleImageChange = (e) => {
+		// console.log(e.target.files[])
+		if (e.target.files) {
+			const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+
+			 console.log("filesArray: ", filesArray);
+
+			setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+			Array.from(e.target.files).map(
+				(file) => URL.revokeObjectURL(file) // avoid memory leak
+			);
+		}
+	};
+  const renderPhotos = (source) => {
+		console.log('source: ', source);
+		return source.map((photo) => {
+			return <video
+      key={photo}
+      width="320"
+      height="240"
+      controls
+    >
+      <source src={photo} type="video/mp4" />
+    </video>
+		});
+	};
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
@@ -45,6 +76,7 @@ const MyVideo = () => {
       <div className="custom-file mb-4">
         <input
           type="file"
+          multiple
           className="custom-file-input"
           id="customFile"
           onChange={onChange}
@@ -81,6 +113,16 @@ const MyVideo = () => {
           </div>
         </div>
       ) : null}
+      
+      <div>
+				<input type="file" id="file" multiple onChange={handleImageChange} />
+				<div className="label-holder">
+					<label htmlFor="file" className="label">
+						<i className="material-icons">add_a_photo</i>
+					</label>
+				</div>
+				<div className="result">{renderPhotos(selectedFiles)}</div>
+			</div>
     </Fragment>
   );
 };

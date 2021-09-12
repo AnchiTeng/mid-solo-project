@@ -5,8 +5,18 @@ const app = express();
 
 app.use(fileUpLoad());
 
-app.get("/myvideo", (req, res) => {
-  const test = [{ test: 1 }];
+app.get("/video", (req, res) => {
+  const test = [
+   
+    {  id: 1,
+       uuid: 1,
+       url: "https://www.w3schools.com/tags/movie.mp4",
+       title: "A day at Work",
+       author: "Sam",
+       uploadAt: "1",
+       converted: true
+      },
+  ];
 
   res.send(test);
 });
