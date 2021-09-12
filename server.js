@@ -17,6 +17,7 @@ app.get("/video", (req, res) => {
        converted: true
       },
   ];
+  
 
   res.send(test);
 });
@@ -26,8 +27,11 @@ app.post("/myvideo", (req, res) => {
   if (req.files === null) {
     return res.status(400).json({ msg: "no file upload" });
   }
+  const fileFolder = [];//9/12 
   const file = req.files.file;
-  console.log("list", req.body);
+  console.log("list", req.files);
+  
+  
 
   //sending uploadfiles to uploads folder
   file.mv(`${__dirname}/client/public/uploads/${file.name}`, (err) => {
@@ -37,11 +41,12 @@ app.post("/myvideo", (req, res) => {
     }
 
     let today = new Date().toISOString().slice(0, 10);
+    fileFolder.push(`/uploads/${file.name}`);//9/12
     //filePath is from uploads folder
     res.json({
       fileName: file.name,
       filePath: `/uploads/${file.name}`,
-      uploadDate: today,
+      uploadDate: today,fileFolder
     });
   });
 });

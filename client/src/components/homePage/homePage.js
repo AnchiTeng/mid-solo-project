@@ -22,7 +22,7 @@ class MemberSideBar extends Component {
   render(){
     return (
     <div className='sideBar'>
-      <img className='userSignUpIcon' src={userIcon} />
+      <img className='userSignUpIcon' src={userIcon} alt=''/>
       <h2>Customers</h2>
       
       <a href='http://localhost:5000/api/customer'>
