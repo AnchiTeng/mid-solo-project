@@ -27,7 +27,8 @@ app.post("/myvideo", (req, res) => {
   if (req.files === null) {
     return res.status(400).json({ msg: "no file upload" });
   }
-  const fileFolder = [];//9/12 
+  const fileFolder = []; 
+  
   const file = req.files.file;
   console.log("list", req.files);
   
@@ -42,6 +43,7 @@ app.post("/myvideo", (req, res) => {
 
     let today = new Date().toISOString().slice(0, 10);
     fileFolder.push(`/uploads/${file.name}`);//9/12
+    
     //filePath is from uploads folder
     res.json({
       fileName: file.name,
