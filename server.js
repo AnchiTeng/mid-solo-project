@@ -46,7 +46,8 @@ app.post("/myvideo", (req, res) => {
     res.json({
       fileName: file.name,
       filePath: `/uploads/${file.name}`,
-      uploadDate: today,fileFolder
+      uploadDate: today,
+      fileFolder
     });
   });
 });
