@@ -96,14 +96,9 @@ const MyVideo = () => {
     }
   };
   //9/13 delete file
-  const onDelete = async(src) => {
+  const onDelete = (e) => {
     
-     const res = await axios.delete("/video",{
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    console.log('res in onDelete',res);
+     
   };
 
   return (
