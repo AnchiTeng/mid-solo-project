@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState,useEffect } from "react";
 import axios from "axios";
 
 
@@ -13,7 +13,25 @@ const MyVideo = () => {
   console.log('fileFolder:>>',fileFolder);
   
 
-  const [ selectedFiles, setSelectedFiles ] = useState([]);
+  
+  //fetch out of useEffect
+  //test locakstorage below
+  useEffect(() => {
+    console.log('in useEffect');
+    fetch('./myvideo')
+      .then(response => response.json())
+      .then(result => {
+        const folder = result.map(item => {
+          item.fileFolder = fileFolder;
+          console.log(fileFolder);
+          setFileFolder(fileFolder);
+          return item;
+        })
+        setFileFolder(folder);
+      });
+  },null);
+
+
   
 
   
@@ -22,14 +40,14 @@ const MyVideo = () => {
   
   const renderVideos = (source) => {
 		console.log('source: ', source);
-		return source.map((photo) => {
+		return source.map((srcPath) => {
 			return <video
-      key={photo}//photo
+      key={srcPath}//photo
       width="320"
       height="240"
       controls
     >
-      <source src={photo} type="video/mp4" />
+      <source src={srcPath} type="video/mp4" />
     </video>
 		});
 	};
@@ -54,7 +72,9 @@ const MyVideo = () => {
       setFilename("coconuts");
       // pull out from server response
       const { fileName, filePath, uploadDate,fileFolder } = res.data;
-      const file = { fileName, filePath, uploadDate,fileFolder };
+      //const file = res.data//obj---9/13
+      const file = { fileName, filePath, uploadDate,fileFolder };//---9/13
+
       //upload new file
       setUploadedFile(file);
       //push new file to fileFolder
@@ -140,6 +160,8 @@ Solved:
 /*
 -----use url as src------
 //problem is each time render different url, don't know how to track yet. Maybe add url to each file obj state?? 
+
+const [ selectedFiles, setSelectedFiles ] = useState([]);
 // const handleImageChange = (e) => {
 	// 	// console.log(e.target.files[])
 	// 	if (e.target.files) {

@@ -16,11 +16,22 @@ app.get("/video", (req, res) => {
        uploadAt: "1",
        converted: true
       },
+     
+
+      /* 
+      1)  readfile =>publec/uploads
+      send to useEffect
+      */ 
   ];
+  const uploads = [];
+  //const data = 
   
 
-  res.send(test);
+  return res.send(test);
 });
+
+//app.delete 1)readfile=>uploads 2)req.body 3)froentend onDelete
+
 
 app.post("/myvideo", (req, res) => {
   console.log("inside the myvideo endpoint");
