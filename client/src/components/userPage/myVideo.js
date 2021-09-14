@@ -16,7 +16,6 @@ const MyVideo = () => {
   
   //fetch out of useEffect
   //const fetchedData = 
-  //test locakstorage below
   useEffect(() => {
     console.log('in useEffect');
     fetch('/video')
@@ -36,26 +35,24 @@ const MyVideo = () => {
         setFileFolder(folder);
       });
   },[]);
-
-
-  
-
-  
-  
 	
   
   const renderVideos = (source) => {
 		console.log('source: ', source);
 		return source.map((srcPath) => {
-			return <video
+			return <div>
+        <button id={srcPath} onClick={onDelete}>Delete this video</button>
+        <video
       key={srcPath}//photo
       width="320"
       height="240"
       controls
     >
       {console.log('srcPath >>>',srcPath)}
+     
       <source src={srcPath} type="video/mp4" />
     </video>
+      </div>
 		});
 	};
   
@@ -98,6 +95,16 @@ const MyVideo = () => {
       
     }
   };
+  //9/13 delete file
+  const onDelete = async(src) => {
+    
+     const res = await axios.delete("/video",{
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log('res in onDelete',res);
+  };
 
   return (
     <Fragment>
@@ -132,8 +139,12 @@ const MyVideo = () => {
                 value="delete"
                 className="btn btn-primary btn-block mt-4"
               />
+              
             </h2>
             <div className='testVideoDisplay'>
+             
+             {/* {renderDeleteBtn(fileFolder)}  */}
+             
              {renderVideos(fileFolder)}
             </div>
 
@@ -160,7 +171,15 @@ Solved:
 
 9/12: need to have an event handler/function to display all videos from fileFolder array. How to delete video? unlink? each video has delete button which has delete-handler? Deal with the case when choose exit file problems.(it did push duplicate path to fileFolder).
 Solved:
-1) can display multiple videos with paths in fileFolder. 
+1) can display multiple videos with paths in fileFolder.
+2)refreshed page work fine.
+3)render delete btn with video without functionality yet. 
+
+9/13:
+need to match btn with the video file path
+click delete btn will send the file path to backend(app.delete('/video)). should have event handler,onDelete to send the filePath  
+Solved:
+ 
 
 */
 

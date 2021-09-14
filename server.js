@@ -1,10 +1,11 @@
 const express = require("express");
 const fileUpLoad = require("express-fileupload");
-//import { readFile } from 'fs';
 const fs = require("fs");
 const app = express();
+const cors = require('cors');
 
 app.use(fileUpLoad());
+app.use(cors());
 
 app.get("/video", (req, res) => {
   const test = [
@@ -35,6 +36,13 @@ app.get("/video", (req, res) => {
 
 //app.delete 1)readfile=>uploads 2)req.body 3)froentend onDelete
 
+app.delete('/video',(req,res)=>{
+  console.log("---DELETE Request Called---");
+  let fileToDelete = req.files.file;
+  console.log('fileToDelete >>>',fileToDelete);
+
+});
+
 
 app.post("/myvideo", (req, res) => {
   console.log("inside the myvideo endpoint");
@@ -59,6 +67,7 @@ app.post("/myvideo", (req, res) => {
     fileFolder.push(`/uploads/${file.name}`);//9/12
     
     //filePath is from uploads folder
+    //res.status(201).json() 201=>update successfully
     res.json({
       fileName: file.name,
       filePath: `/uploads/${file.name}`,
@@ -80,3 +89,7 @@ app.get("/api/customer", (req, res) => {
 const port = 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
+/*
+9/13 Do i need cors?
+*/
