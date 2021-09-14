@@ -1,6 +1,7 @@
 const express = require("express");
 const fileUpLoad = require("express-fileupload");
-
+//import { readFile } from 'fs';
+const fs = require("fs");
 const app = express();
 
 app.use(fileUpLoad());
@@ -17,17 +18,19 @@ app.get("/video", (req, res) => {
        converted: true
       },
      
-
-      /* 
-      1)  readfile =>publec/uploads
-      send to useEffect
-      */ 
   ];
-  const uploads = [];
-  //const data = 
+  const uploads = [];//to store uploaded files in "./client/public/uploadss"
   
 
-  return res.send(test);
+  uploads.push(fs.readdirSync('./client/public/uploads').forEach(file => {
+    console.log(file);
+    uploads.push(file);
+   
+  }));
+   uploads.pop();//don't know why there is a null item in the end;
+   console.log('uploads >>>',uploads); 
+
+  return res.send(uploads);
 });
 
 //app.delete 1)readfile=>uploads 2)req.body 3)froentend onDelete
@@ -71,7 +74,6 @@ app.get("/api/customer", (req, res) => {
     { id: 2, firstName: "Finn", lastName: "Lo" },
     { id: 3, firstName: "Sam", lastName: "Lo" },
   ];
-
   res.json(customer);
 });
 

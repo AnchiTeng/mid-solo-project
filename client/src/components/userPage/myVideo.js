@@ -15,21 +15,27 @@ const MyVideo = () => {
 
   
   //fetch out of useEffect
+  //const fetchedData = 
   //test locakstorage below
   useEffect(() => {
     console.log('in useEffect');
-    fetch('./myvideo')
+    fetch('/video')
       .then(response => response.json())
       .then(result => {
-        const folder = result.map(item => {
-          item.fileFolder = fileFolder;
-          console.log(fileFolder);
-          setFileFolder(fileFolder);
-          return item;
-        })
+        const folder = result;
+        //server res come back with arr with filename not source path we are using in myVideos;
+        //add '/uploads/' to the arr item to match the source path
+        const str = '/uploads/';
+        //don't use foreach, forEach didn't really change the origin value;
+        //
+        for(let i=0;i<folder.length;i++){
+          folder[i]= str + folder[i];
+        
+        }
+        console.log('folder in useEffect >>',folder);
         setFileFolder(folder);
       });
-  },null);
+  },[]);
 
 
   
@@ -47,6 +53,7 @@ const MyVideo = () => {
       height="240"
       controls
     >
+      {console.log('srcPath >>>',srcPath)}
       <source src={srcPath} type="video/mp4" />
     </video>
 		});
