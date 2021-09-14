@@ -21,6 +21,12 @@ app.get("/video", (req, res) => {
      
   ];
   const uploads = [];//to store uploaded files in "./client/public/uploadss"
+
+  //------9/14
+// app.delete('/video',(req,res)=>{
+
+// })
+  //--------
   
 
   uploads.push(fs.readdirSync('./client/public/uploads').forEach(file => {
@@ -31,18 +37,8 @@ app.get("/video", (req, res) => {
    uploads.pop();//don't know why there is a null item in the end;
    console.log('uploads >>>',uploads); 
 
-  return res.send(uploads);
+  return res.json(uploads);
 });
-
-//app.delete 1)readfile=>uploads 2)req.body 3)froentend onDelete
-
-app.delete('/video',(req,res)=>{
-  console.log("---DELETE Request Called---");
-  let fileToDelete = req.files.file;
-  console.log('fileToDelete >>>',fileToDelete);
-
-});
-
 
 app.post("/myvideo", (req, res) => {
   console.log("inside the myvideo endpoint");

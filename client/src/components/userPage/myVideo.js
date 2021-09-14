@@ -9,6 +9,7 @@ const MyVideo = () => {
   const [uploadedFile, setUploadedFile] = useState({});
   
   const [fileFolder,setFileFolder] = useState([]);
+  
   console.log('uploadedFile :>> ', uploadedFile);
   console.log('fileFolder:>>',fileFolder);
   
@@ -33,8 +34,10 @@ const MyVideo = () => {
         }
         console.log('folder in useEffect >>',folder);
         setFileFolder(folder);
+        //setNewFileFolder(newFileFolder);
       });
   },[]);
+  //[]>>>fileFolder;9/14
 	
   
   const renderVideos = (source) => {
@@ -96,9 +99,43 @@ const MyVideo = () => {
     }
   };
   //9/13 delete file
+  
   const onDelete = (e) => {
+    // e.target.id can get each one btn's id which has the video's filepath
+    console.log("deleteFilePath", e.target.id)
+    const id = e.target.id;  
+
+    // set deletedArr as value of new fileFolder
+     let deletedArr = fileFolder.filter(item => item !==id);
+    console.log("delArr",deletedArr," New fileFolder",fileFolder);
     
-     
+    //call setFileFolder to update the state of fileFolder 
+    setFileFolder(deletedArr);
+
+    
+    
+    //Problem:fileFolder remain pre state, isn't changed by deletedArr
+    console.log('after fileFolder',fileFolder);
+
+//---------9/14------------
+// fetch('/video')
+// .then(response => response.json())
+// .then(result => {
+//   const folder = result;
+//   //server res come back with arr with filename not source path we are using in myVideos;
+//   let newArr = [];
+//   for(let i=0;i<folder.length;i++){
+//    if(folder[i] !== id){
+//      newArr.push(folder[i]);
+//    }
+  
+//   }
+//   console.log('folder in useEffect >>',newArr);
+//   setFileFolder(newArr);
+//   console.log('after fileFolder',fileFolder);
+  
+// });
+  //----------9/14----------------
   };
 
   return (
@@ -128,13 +165,9 @@ const MyVideo = () => {
             
 
             <h2>
-              video list: {uploadedFile.fileName}
-              <input
-                type="submit"
-                value="delete"
-                className="btn btn-primary btn-block mt-4"
-              />
-              
+             
+             ---------------------------
+             --------------------------- 
             </h2>
             <div className='testVideoDisplay'>
              
