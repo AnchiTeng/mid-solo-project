@@ -33,18 +33,25 @@ const MyVideo = () => {
         
         }
         console.log('folder in useEffect >>',folder);
+
         setFileFolder(folder);
-        //setNewFileFolder(newFileFolder);
+        
       });
   },[]);
-  //[]>>>fileFolder;9/14
+  
 	
   
   const renderVideos = (source) => {
-		console.log('source: ', source);
+		console.log('source in renderVideos: ', source);
+   
 		return source.map((srcPath) => {
+      const re = /\/uploads\//g
+      let strId = srcPath.replace(re,'');
 			return <div>
-        <button id={srcPath} onClick={onDelete}>Delete this video</button>
+        <h3 className="text-center">
+              {uploadedFile.uploadDate} {uploadedFile.fileName}{" "}
+            </h3>
+        <button id={strId} onClick={onDelete}>Delete this video</button>
         <video
       key={srcPath}//photo
       width="320"
@@ -101,42 +108,24 @@ const MyVideo = () => {
   //9/13 delete file
   
   const onDelete = (e) => {
-    // e.target.id can get each one btn's id which has the video's filepath
-    console.log("deleteFilePath", e.target.id)
+    // // e.target.id can get each one btn's id which has the video's filepath
+    // console.log("deleteFilePath", e.target.id)
     const id = e.target.id;  
 
-    // set deletedArr as value of new fileFolder
-     let deletedArr = fileFolder.filter(item => item !==id);
-    console.log("delArr",deletedArr," New fileFolder",fileFolder);
-    
-    //call setFileFolder to update the state of fileFolder 
-    setFileFolder(deletedArr);
+console.log("id before fetch",id);
+fetch(`/video/${id}`,{method:'DELETE'})
 
-    
-    
-    //Problem:fileFolder remain pre state, isn't changed by deletedArr
-    console.log('after fileFolder',fileFolder);
+.then(response => response.json())
+.then(result => {
+  const folder = result;
+  //server res come back with arr with filename not source path we are using in myVideos;
+  console.log('result',result)
+  setFileFolder(folder);
+  console.log('new fileFolder >>>',fileFolder)
+  
+});
 
-//---------9/14------------
-// fetch('/video')
-// .then(response => response.json())
-// .then(result => {
-//   const folder = result;
-//   //server res come back with arr with filename not source path we are using in myVideos;
-//   let newArr = [];
-//   for(let i=0;i<folder.length;i++){
-//    if(folder[i] !== id){
-//      newArr.push(folder[i]);
-//    }
-  
-//   }
-//   console.log('folder in useEffect >>',newArr);
-//   setFileFolder(newArr);
-//   console.log('after fileFolder',fileFolder);
-  
-// });
-  //----------9/14----------------
-  };
+};
 
   return (
     <Fragment>
@@ -156,9 +145,7 @@ const MyVideo = () => {
       {uploadedFile && 
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
-            <h3 className="text-center">
-              {uploadedFile.uploadDate} {uploadedFile.fileName}{" "}
-            </h3>
+            
             <div className='testVideoDisplay'>
              {renderVideos(fileFolder)}
             </div>
@@ -171,7 +158,7 @@ const MyVideo = () => {
             </h2>
             <div className='testVideoDisplay'>
              
-             {/* {renderDeleteBtn(fileFolder)}  */}
+             
              
              {renderVideos(fileFolder)}
             </div>
@@ -207,7 +194,13 @@ Solved:
 need to match btn with the video file path
 click delete btn will send the file path to backend(app.delete('/video)). should have event handler,onDelete to send the filePath  
 Solved:
- 
+1)can delete video as expected
+2)no refresh page problems
+
+9/14:
+next steps:
+1)homePage videoslide render videos from uploads
+2) do login / if use mongoDB?
 
 */
 

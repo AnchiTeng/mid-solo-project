@@ -20,25 +20,38 @@ app.get("/video", (req, res) => {
       },
      
   ];
-  const uploads = [];//to store uploaded files in "./client/public/uploadss"
-
-  //------9/14
-// app.delete('/video',(req,res)=>{
-
-// })
-  //--------
+  const uploads = fs.readdirSync('./client/public/uploads')
   
-
-  uploads.push(fs.readdirSync('./client/public/uploads').forEach(file => {
-    console.log(file);
-    uploads.push(file);
-   
-  }));
-   uploads.pop();//don't know why there is a null item in the end;
    console.log('uploads >>>',uploads); 
 
   return res.json(uploads);
 });
+
+
+ app.delete('/video/:id',(req,res)=>{
+  console.log("****in delete *****") 
+  
+
+  const fileName = req.params.id 
+  fs.unlink(`./client/public/uploads/${fileName}`,(err)=>{
+    if(err){ return res.status(500).send(err)
+    }else{
+    const uploads = fs.readdirSync('./client/public/uploads')
+
+      
+
+  console.log('before uploads',uploads)
+  for(let i=0 ;i<uploads.length;i++){
+    uploads[i]="/uploads/" + uploads[i];
+  }
+      console.log('after send uploads',uploads)
+      return res.status(200).send(uploads);
+    }
+  });//use dir__
+
+  
+ })
+
 
 app.post("/myvideo", (req, res) => {
   console.log("inside the myvideo endpoint");
