@@ -21,12 +21,29 @@ const breakPoints = [
       }
       }
       componentDidMount(){
-        fetch('/video') 
+        fetch('/videoslide') 
           .then(res => res.json()) 
           //setState can have 2nd err callback
           .then(testData => this.setState({test:testData },()=>console.log('videoPath fetched..',testData)));
 
       }
+
+       renderVideos = (source) => {
+        console.log('source in renderVideos: ', source);
+       
+        return source.map((srcPath) => {
+          const re = /\/uploads\//g
+          let strId = srcPath.replace(re,'');
+          return <div>
+             <video key={srcPath} width="320" height="240" controls>
+            <source src={srcPath} type="video/mp4"></source>
+            <source src={srcPath} type="video/ogg"></source>
+            
+            </video>
+           
+          </div>
+        });
+      };
 
       
     
@@ -36,7 +53,8 @@ render(){
         
         <div>
         <Carousel breakPoints={breakPoints}>
-            <img src={userIcon} alt=''/>
+          {this.renderVideos(this.state.test)}
+            {/* <img src={userIcon} alt=''/>
             <video width="320" height="240" controls>
             <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4"></source>
             <source src="https://www.w3schools.com/tags/movie.mp4" type="video/ogg"></source>
@@ -50,7 +68,7 @@ render(){
             <button>15</button>
             <button>16</button>
             <button>17</button>
-            <button>18</button>
+            <button>18</button> */}
 
             
         </Carousel>

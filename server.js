@@ -22,7 +22,9 @@ app.get("/video", (req, res) => {
   ];
   const uploads = fs.readdirSync('./client/public/uploads')
   
+  
    console.log('uploads >>>',uploads); 
+
 
   return res.json(uploads);
 });
@@ -85,6 +87,22 @@ app.post("/myvideo", (req, res) => {
     });
   });
 });
+
+app.get("/videoslide", (req, res) => {
+  
+     
+  
+  const uploads = fs.readdirSync('./client/public/uploads')
+  
+  for(let i=0 ;i<uploads.length;i++){
+    uploads[i]="/uploads/" + uploads[i];
+  }
+   console.log('uploads in videoslide >>>',uploads); 
+
+
+  return res.json(uploads);
+});
+
 
 app.get("/api/customer", (req, res) => {
   const customer = [
