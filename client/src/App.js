@@ -4,6 +4,8 @@ import { Router, Route, Switch,browserHistory } from "react-router";
 import MemberSideBar from './components/homePage/homePage';
 //import VideoSlide from './components/videoSlide/videoSlide';
 import MyVideo from './components/userPage/myVideo';
+import Login from './components/login/login';
+import Register from './components/register/register';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
     <Switch>
       <Route exact path='/' component={MemberSideBar} />
       <Route exact path='/myvideo' component={MyVideo} />
+      <Route exact path='/login' component={Login} />
+      <Route exact path='/register' component={Register} />
       
     </Switch>
   </main>

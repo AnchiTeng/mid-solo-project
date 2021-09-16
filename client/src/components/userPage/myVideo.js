@@ -130,6 +130,7 @@ fetch(`/video/${id}`,{method:'DELETE'})
   return (
     <Fragment>
       <div className="custom-file mb-4">
+      
         <input
           type="file"
           multiple
@@ -141,6 +142,10 @@ fetch(`/video/${id}`,{method:'DELETE'})
           {filename}
         </label>
         <button onClick={onSubmit}>Upload</button>
+
+        <a href='http://localhost:3000'>
+        <button className='buttonBackHome'>Back to homePage</button>
+    </a>
       </div>
       {uploadedFile && 
         <div className="row mt-5">
@@ -169,7 +174,7 @@ fetch(`/video/${id}`,{method:'DELETE'})
 				
       
       }
-      
+       
       
     </Fragment>
   );

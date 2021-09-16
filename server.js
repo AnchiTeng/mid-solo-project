@@ -3,9 +3,73 @@ const fileUpLoad = require("express-fileupload");
 const fs = require("fs");
 const app = express();
 const cors = require('cors');
+//const singUpTemplateCopy = require('./client/public/signupDB/models/signupModel');//??
+
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const router = require('./client/public/signupDB/routes/route');
+
+//dotenv.config();
+
+console.log(process.env.databaseAccess)
+    mongoose.connect("mongodb+srv://h0492763273:h0492763273@cluster0.2at03.mongodb.net/myTable?retryWrites=true&w=majority",{
+      useNewUrlParser: true,
+      useUnifiedTopology: true},()=>console.log('database connected'));
 
 app.use(fileUpLoad());
 app.use(cors());
+app.use(express.urlencoded())//9/15 check
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String
+})
+
+const User = new mongoose.model("User", userSchema)
+
+
+app.get('/login',(req,res)=>{
+  return res.status(200).send('get login');
+})
+
+app.post("/login", (req, res)=> {
+  const { email, password} = req.body
+  User.findOne({ email: email}, (err, user) => {
+      if(user){
+          if(password === user.password ) {
+              res.send({message: "Login Successfull", user: user})
+          } else {
+              res.send({ message: "Password didn't match"})
+          }
+      } else {
+          res.send({message: "User not registered"})
+      }
+  })
+}) 
+
+app.post("/register", (req, res)=> {
+  const { name, email, password} = req.body
+  User.findOne({email: email}, (err, user) => {
+      if(user){
+          res.send({message: "User already registerd"})
+      } else {
+          const user = new User({
+              name,
+              email,
+              password
+          })
+          user.save(err => {
+              if(err) {
+                  res.send(err)
+              } else {
+                  res.send( { message: "Successfully Registered, Please login now." })
+              }
+          })
+      }
+  })
+  
+}) 
 
 app.get("/video", (req, res) => {
   const test = [
@@ -102,6 +166,24 @@ app.get("/videoslide", (req, res) => {
 
   return res.json(uploads);
 });
+
+// app.post('/signup',(req,res)=>{
+//   const singedUpUser = new singUpTemplateCopy({
+//       fullName:req.body.fullName,
+//       userName:req.body.singUpUser,
+//       email:req.body.email,
+//       password:req.body.password
+//   })
+//     singedUpUser.save()
+//     .then(data => {
+//         res.json(data)
+//     })
+//     .catch(err => {
+//         res.json(err);
+//     })
+//   })
+
+
 
 
 app.get("/api/customer", (req, res) => {

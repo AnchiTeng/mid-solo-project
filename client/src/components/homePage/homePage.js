@@ -25,7 +25,8 @@ class MemberSideBar extends Component {
       <img className='userSignUpIcon' src={userIcon} alt=''/>
       <h2>Customers</h2>
       
-      <a href='http://localhost:5000/api/customer'>
+      
+      <a href='http://localhost:3000/login'>
         <button className='buttonLogin'>Login</button>
     </a>
       <a href='http://localhost:3000/myvideo'>

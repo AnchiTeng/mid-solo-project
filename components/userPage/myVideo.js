@@ -7,7 +7,7 @@ const MyVideo = ()=> {
   const [ file, setFile] = useState('');
   const [ filename, setFilename] = useState('abcd');
   const [ uploadedFile, setUploadedFile] = useState({});
-  //const [fileList,setFileList] = useState([]);
+  
   
   const onChange= e =>{
       setFile(e.target.files[0]);
