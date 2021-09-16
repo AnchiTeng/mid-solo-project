@@ -19,6 +19,7 @@ console.log(process.env.databaseAccess)
 app.use(fileUpLoad());
 app.use(cors());
 app.use(express.urlencoded())//9/15 check
+app.use(express.json());
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -48,9 +49,13 @@ app.post("/login", (req, res)=> {
   })
 }) 
 
-app.post("/register", (req, res)=> {
+app.post("/login-or-register", (req, res)=> {
+  console.log('body >>>',req.body)//9/16 empty?
   const { name, email, password} = req.body
+  console.log('body >>>',req.body)
+  
   User.findOne({email: email}, (err, user) => {
+    console.log('user >>>',user);
       if(user){
           res.send({message: "User already registerd"})
       } else {
@@ -59,6 +64,7 @@ app.post("/register", (req, res)=> {
               email,
               password
           })
+          console.log('user on line 66',user)
           user.save(err => {
               if(err) {
                   res.send(err)

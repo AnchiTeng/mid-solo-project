@@ -24,7 +24,7 @@ function App() {
       <Route exact path='/' component={MemberSideBar} />
       <Route exact path='/myvideo' component={MyVideo} />
       <Route exact path='/login' component={Login} />
-      <Route exact path='/register' component={Register} />
+      <Route exact path='/login-or-register' component={Register} />
       
     </Switch>
   </main>

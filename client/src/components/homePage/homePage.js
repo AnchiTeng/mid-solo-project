@@ -26,8 +26,8 @@ class MemberSideBar extends Component {
       <h2>Customers</h2>
       
       
-      <a href='http://localhost:3000/login'>
-        <button className='buttonLogin'>Login</button>
+      <a href='http://localhost:3000/login-or-register'>
+        <button className='buttonLogin'>Login/Register</button>
     </a>
       <a href='http://localhost:3000/myvideo'>
     <button className='buttonMyVideos'>My Videos</button>

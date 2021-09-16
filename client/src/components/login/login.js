@@ -38,7 +38,7 @@ const Login = ({ setLoginUser}) => {
             <input type="password" name="password" value={user.password} onChange={handleChange}  placeholder="Enter your Password" ></input>
             <div className="button" onClick={login}>Login</div>
             <div>or</div>
-            <div className="button" onClick={() => history.push("/register")}>Register</div>
+            <div className="button" onClick={() => history.push("/login-or-register")}>Register</div>
         </div>
     )
 }
@@ -50,6 +50,9 @@ export default Login
 9/15
 Login has problem , not user can still login. Unhandled Rejection (TypeError): setLoginUser is not a function
 how to connect login to homepage or myvideo?
+
+9/16
+histroy.push has problem
 */
 
   
