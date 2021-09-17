@@ -173,24 +173,6 @@ app.get("/videoslide", (req, res) => {
   return res.json(uploads);
 });
 
-// app.post('/signup',(req,res)=>{
-//   const singedUpUser = new singUpTemplateCopy({
-//       fullName:req.body.fullName,
-//       userName:req.body.singUpUser,
-//       email:req.body.email,
-//       password:req.body.password
-//   })
-//     singedUpUser.save()
-//     .then(data => {
-//         res.json(data)
-//     })
-//     .catch(err => {
-//         res.json(err);
-//     })
-//   })
-
-
-
 
 app.get("/api/customer", (req, res) => {
   const customer = [
