@@ -1,14 +1,14 @@
 import React, { Component, useState } from "react";
 import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
-import './videoSlide.css';
-import userIcon from '../homePage/userIcon.png';
+//import './videoSlide.css';
+
 
 //Problems: can't pass test video path to video slide line 45~48 (9/12)
 const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
+     { width: 768, itemsToShow: 3 },
     { width: 1200, itemsToShow: 4 },
   ];
 
@@ -40,6 +40,7 @@ const breakPoints = [
             <source src={srcPath} type="video/ogg"></source>
             
             </video>
+           
            
           </div>
         });

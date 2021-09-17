@@ -1,22 +1,24 @@
 
 .sideBar {
     min-height: 20vh;
-    position: left;
     
+    background-color: #1f2b2c;
     align-items: left;
     justify-content: left;
     font-size: calc(10px + 2vmin);
     color: rgb(85, 9, 9);
+    position: relative;
+    left: 30px;
   }
   
   .userSignUpIcon {
       float:left;
-      height: 20vmin;
-      pointer-events: none;
+      height: 15vmin;
+      
   }
   @media (prefers-reduced-motion: no-preference) {
       .userSignUpIcon {
-        animation: userSignUpIcon-spin infinite 5s linear;
+        animation: userSignUpIcon-spin infinite 8s linear;
       }
     }
   
@@ -25,7 +27,7 @@
           transform: rotate(0deg);
         }
         to {
-          transform: rotate(180deg);
+          transform: rotate(360deg);
         }
   
   }
@@ -35,10 +37,10 @@
     margin-left: -100px;
     width: 150px;
     height: 45px;
-    fill:#041561;
+    fill:#44e9f5;
     fill-opacity: 5.0;
     font-family:"Open Sans";
-    font: weight 400px;
+    font: weight 600px;
   
   }
   .buttonMyVideos {
@@ -54,4 +56,5 @@
       margin-left: -100px;
       width: 150px;
       height: 45px;
+     
   }

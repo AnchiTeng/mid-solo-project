@@ -3,6 +3,9 @@ import './homePage.css';
 import userIcon from './userIcon.png';  
 import { Route, Switch} from "react-router-dom";
 import VideoSlide from "../videoSlide/videoSlide";
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import { Button } from 'react-bootstrap';
+
 
 
 
@@ -13,7 +16,7 @@ const MemberSideBar = () =>{
   return (
     <div className='sideBar'>
       <img className='userSignUpIcon' src={userIcon} alt=''/>
-      <h2>Customers</h2>
+      
       
       
       <a href='http://localhost:3000/login-or-register'>
@@ -23,7 +26,7 @@ const MemberSideBar = () =>{
     <button className='buttonMyVideos'>My Videos</button>
      </a>
         
-        <button className='buttonSetting'>Setting</button>
+        <button className="buttonSetting">Setting</button>
         
         
             {/* <button className="button" onClick={() => setLoginUser({})} >Logout</button> */}

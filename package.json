@@ -12,6 +12,7 @@
   "author": "Anchi Teng",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^5.1.1",
     "concurrently": "^6.2.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
