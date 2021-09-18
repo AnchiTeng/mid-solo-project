@@ -12,7 +12,7 @@ const Register = () => {
         email:"",
         password:"",
         reEnterPassword: ""
-    })
+    }) 
 
     const handleChange = e => {
         const { name, value } = e.target

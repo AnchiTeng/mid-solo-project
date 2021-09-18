@@ -5,8 +5,7 @@ import { Route, Switch} from "react-router-dom";
 import VideoSlide from "../videoSlide/videoSlide";
 import MemberSideBar from "./homePage";
 
-
-
+ 
 
 const MemberSideBar2 = ({setLoginUser},{user}) =>{
 
