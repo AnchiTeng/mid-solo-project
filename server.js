@@ -174,14 +174,14 @@ app.get("/videoslide", (req, res) => {
 });
 
 
-app.get("/api/customer", (req, res) => {
-  const customer = [
-    { id: 1, firstName: "Angel", lastName: "Teng" },
-    { id: 2, firstName: "Finn", lastName: "Lo" },
-    { id: 3, firstName: "Sam", lastName: "Lo" },
-  ];
-  res.json(customer);
-});
+// app.get("/api/customer", (req, res) => {
+//   const customer = [
+//     { id: 1, firstName: "Angel", lastName: "Teng" },
+//     { id: 2, firstName: "Finn", lastName: "Lo" },
+//     { id: 3, firstName: "Sam", lastName: "Lo" },
+//   ];
+//   res.json(customer);
+// });
 
 const port = 5000;
 

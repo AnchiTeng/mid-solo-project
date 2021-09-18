@@ -27,7 +27,7 @@ const Login = ({ setLoginUser}) => {
         .then(res => {
             alert(res.data.message)
             setLoginUser(res.data.user)
-            history.push("/") //http://localhost:3000
+            history.push("/logged") //http://localhost:3000
             
         })
     }

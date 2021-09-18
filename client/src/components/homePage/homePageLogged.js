@@ -3,20 +3,27 @@ import './homePage.css';
 import userIcon from './userIcon.png';  
 import { Route, Switch} from "react-router-dom";
 import VideoSlide from "../videoSlide/videoSlide";
+import MemberSideBar from "./homePage";
 
 
 
-const MemberSideBar2 = () =>{
+
+const MemberSideBar2 = ({setLoginUser},{user}) =>{
+
 
   return (
+    
     <div className='sideBar'>
       <img className='userSignUpIcon' src={userIcon} alt=''/>
       <h2>Customers</h2>
+      {/* Logout works but want to redirect homepage 9/17 */}
       
-      
-      <a href='http://localhost:3000/login-or-register'>
-        <button className='buttonLogin'>Logout</button>
+     
+      <a href='http://localhost:3000/'>
+        <button className='buttonLogin' onClick={() => setLoginUser({})}>Logout</button>
     </a>
+    
+
       <a href='http://localhost:3000/myvideo'>
     <button className='buttonMyVideos'>My Videos</button>
      </a>
@@ -37,6 +44,7 @@ const MemberSideBar2 = () =>{
        
 
       <VideoSlide/>
+      
     </div>
   );
 

@@ -1,10 +1,12 @@
 import React, { Fragment, useState,useEffect } from "react";
 import axios from "axios";
+// import MemberSideBar from './components/homePage/homePage';
+// import MemberSideBar2 from './components/loginAndR/loginAndR';
 
 
 
 
-const MyVideo = () => {
+const MyVideo = ({user},{setLoginUser}) => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("abcd");
   const [uploadedFile, setUploadedFile] = useState({});
@@ -128,6 +130,7 @@ fetch(`/video/${id}`,{method:'DELETE'})
 
 };
 
+
   return (
     <Fragment>
       <div className="custom-file mb-4">
@@ -144,7 +147,7 @@ fetch(`/video/${id}`,{method:'DELETE'})
         </label>
         <button onClick={onSubmit}>Upload</button>
 
-        <a href='http://localhost:3000'>
+        <a href='http://localhost:3000/logged'>
         <button className='buttonBackHome'>Back to homePage</button>
     </a>
       </div>

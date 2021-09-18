@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import './homePage.css';
-import userIcon from './userIcon.png';  
+import userIcon from './userIcon.png'; 
+
 import { Route, Switch} from "react-router-dom";
 import VideoSlide from "../videoSlide/videoSlide";
-//import 'bootstrap/dist/css/bootstrap.min.css';
-//import { Button } from 'react-bootstrap';
+
+import { Button } from 'react-bootstrap';
+
 
 
 
@@ -20,13 +22,13 @@ const MemberSideBar = () =>{
       
       
       <a href='http://localhost:3000/login-or-register'>
-        <button className='buttonLogin'>Login/Register</button>
+        <Button variant="primary">Login/Register</Button>
     </a>
-      <a href='http://localhost:3000/myvideo'>
+      {/* <a href='http://localhost:3000/myvideo'>
     <button className='buttonMyVideos'>My Videos</button>
-     </a>
+     </a> */}
         
-        <button className="buttonSetting">Setting</button>
+        <Button variant="primary">Setting</Button>
         
         
             {/* <button className="button" onClick={() => setLoginUser({})} >Logout</button> */}

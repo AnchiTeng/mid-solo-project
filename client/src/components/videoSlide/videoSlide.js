@@ -1,10 +1,10 @@
 import React, { Component, useState } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
 //import './videoSlide.css';
 
 
-//Problems: can't pass test video path to video slide line 45~48 (9/12)
+
 const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2 },
@@ -40,6 +40,7 @@ const breakPoints = [
             <source src={srcPath} type="video/ogg"></source>
             
             </video>
+            
            
            
           </div>
@@ -55,6 +56,15 @@ render(){
         <div>
         <Carousel breakPoints={breakPoints}>
           {this.renderVideos(this.state.test)}
+          <video width="320" height="240" controls>
+            <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4"></source>
+            <source src="https://www.w3schools.com/tags/movie.mp4" type="video/ogg"></source>
+            
+            </video>
+            <video width="320" height="240" controls>
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></source>
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/ogg"></source>
+           </video >
             {/* <img src={userIcon} alt=''/>
             <video width="320" height="240" controls>
             <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4"></source>

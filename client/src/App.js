@@ -2,12 +2,15 @@
 import './App.css';
 import { Router, Route, Switch,browserHistory } from "react-router";
 import MemberSideBar from './components/homePage/homePage';
-import MemberSideBar2 from './components/loginAndR/loginAndR';
+import MemberSideBar2 from './components/homePage/homePageLogged';
 //import VideoSlide from './components/videoSlide/videoSlide';
 import MyVideo from './components/userPage/myVideo';
 import Login from './components/login/login';
 import Register from './components/register/register';
 import { useState } from 'react';//9/16
+import { Image } from 'react-bootstrap';
+import hp1 from './hp-1.jpeg'; 
+
 
 function App() {
   const [ user, setLoginUser] = useState({})//9/16
@@ -25,6 +28,7 @@ function App() {
   return (
    
     <main>
+      <Image src={hp1} fluid />
     <Switch>
       {/* <Route exact path='/' component={MemberSideBar} /> */}
       {/* <Route exact path="/">
@@ -33,6 +37,7 @@ function App() {
             }
           </Route> */}
          {isLogged} 
+      <Route exact path='/logged' component={MemberSideBar2} />
       <Route exact path='/myvideo' component={MyVideo} />
       {/* <Route exact path='/login' component={Login} /> */}
       <Route path="/login">
