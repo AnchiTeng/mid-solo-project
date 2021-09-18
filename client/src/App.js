@@ -8,8 +8,7 @@ import MyVideo from './components/userPage/myVideo';
 import Login from './components/login/login';
 import Register from './components/register/register';
 import { useState } from 'react';//9/16
-import { Image } from 'react-bootstrap';
-import hp1 from './hp-1.jpeg'; 
+ 
 
 
 function App() {
@@ -27,8 +26,8 @@ function App() {
   
   return (
    
-    <main>
-      <Image src={hp1} fluid />
+    <main >
+      
     <Switch>
       {/* <Route exact path='/' component={MemberSideBar} /> */}
       {/* <Route exact path="/">

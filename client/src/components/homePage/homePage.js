@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './homePage.css';
 import userIcon from './userIcon.png'; 
-
-import { Route, Switch} from "react-router-dom";
+import hp1 from './hp-1.jpeg'; 
+//import { Route, Switch} from "react-router-dom";
 import VideoSlide from "../videoSlide/videoSlide";
 
-import { Button } from 'react-bootstrap';
+import { Button,Image } from 'react-bootstrap';
 
 
 
@@ -35,7 +35,7 @@ const MemberSideBar = () =>{
         
 
         
-       
+            <Image src={hp1} fluid />
 
       <VideoSlide/>
     </div>
