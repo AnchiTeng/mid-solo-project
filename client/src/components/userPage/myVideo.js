@@ -2,6 +2,7 @@ import React, { Fragment, useState,useEffect } from "react";
 import axios from "axios";
 // import MemberSideBar from './components/homePage/homePage';
 // import MemberSideBar2 from './components/loginAndR/loginAndR';
+import { InputGroup, FormControl } from "react-bootstrap";
 
 
  
@@ -9,6 +10,7 @@ import axios from "axios";
 const MyVideo = ({user},{setLoginUser}) => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("abcd");
+  const [textBox,setTextBox] = useState('');//9/18
   const [uploadedFile, setUploadedFile] = useState({});
   
   const [fileFolder,setFileFolder] = useState([]);
@@ -52,7 +54,7 @@ const MyVideo = ({user},{setLoginUser}) => {
       let strId = srcPath.replace(re,'');
 			return <div>
         <h3 className="text-center">
-              {uploadedFile.uploadDate} {uploadedFile.fileName}{" "}
+              {uploadedFile.uploadDate} {uploadedFile.fileName} {uploadedFile.textBox}
             </h3>
         <button id={strId} onClick={onDelete}>Delete this video</button>
         <video
@@ -73,6 +75,8 @@ const MyVideo = ({user},{setLoginUser}) => {
   const onChange = (e) => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
+    setTextBox(e.target.files[0].textBox);//9/18
+    console.log("here >>",e.target.files[0].textBox)
     
   };
 
@@ -88,14 +92,15 @@ const MyVideo = ({user},{setLoginUser}) => {
       });
       setFilename("coconuts");
       // pull out from server response
-      const { fileName, filePath, uploadDate,fileFolder } = res.data;
+      const { fileName, filePath, uploadDate,fileFolder,textBox } = res.data;
       //const file = res.data//obj---9/13
-      const file = { fileName, filePath, uploadDate,fileFolder };//---9/13
+      const file = { fileName, filePath, uploadDate,fileFolder,textBox  };//---9/13
 
       //upload new file
       setUploadedFile(file);
       //push new file to fileFolder
       setFileFolder((prev) => prev.concat(fileFolder));
+      setTextBox(textBox);//9/18
 
     } catch (err) {
       if (err.response.status === 500) {
@@ -142,6 +147,12 @@ fetch(`/video/${id}`,{method:'DELETE'})
           id="customFile"
           onChange={onChange}
         />
+       
+        <InputGroup>
+    <InputGroup.Text value={textBox}>type video description here</InputGroup.Text>
+    <FormControl as="textarea" aria-label="With textarea" />
+  </InputGroup>
+
         <label className="custom-file-label" htmlFor="customFile">
           {filename}
         </label>

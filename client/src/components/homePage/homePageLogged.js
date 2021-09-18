@@ -4,6 +4,7 @@ import userIcon from './userIcon.png';
 import { Route, Switch} from "react-router-dom";
 import VideoSlide from "../videoSlide/videoSlide";
 import MemberSideBar from "./homePage";
+import {Nav} from "react-bootstrap";
 
  
 
@@ -11,11 +12,14 @@ const MemberSideBar2 = ({setLoginUser},{user}) =>{
 
 
   return (
+
+    <>
+    
+
     
     <div className='sideBar'>
       <img className='userSignUpIcon' src={userIcon} alt=''/>
-      <h2>Customers</h2>
-      {/* Logout works but want to redirect homepage 9/17 */}
+      <h2> ~~Welcome~~ </h2>
       
      
       <a href='http://localhost:3000/'>
@@ -38,6 +42,7 @@ const MemberSideBar2 = ({setLoginUser},{user}) =>{
             <h1>Hello Homepage</h1>
             <button className="button" onClick={() => setLoginUser({})} >Logout</button>
         </div> */}
+       
 
         
        
@@ -45,6 +50,7 @@ const MemberSideBar2 = ({setLoginUser},{user}) =>{
       <VideoSlide/>
       
     </div>
+    </>
   );
 
 }

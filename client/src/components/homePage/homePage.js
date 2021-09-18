@@ -21,20 +21,21 @@ const MemberSideBar = () =>{
       
       
       <a href='http://localhost:3000/login-or-register'>
-        <Button variant="primary">Login/Register</Button>
+        <button className='buttonLogin'>Login/Register</button>
     </a>
       {/* <a href='http://localhost:3000/myvideo'>
     <button className='buttonMyVideos'>My Videos</button>
      </a> */}
         
-        <Button variant="primary">Setting</Button>
+        {/* <Button variant="primary">Setting</Button> */}
         
         
-            {/* <button className="button" onClick={() => setLoginUser({})} >Logout</button> */}
+        <button className='buttonSetting'>Setting</button>
         
 
-        
+            <center>
             <Image src={hp1} fluid />
+            </center>
 
       <VideoSlide/>
     </div>

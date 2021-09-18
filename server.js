@@ -35,11 +35,11 @@ app.get('/login',(req,res)=>{
 })
 
 app.post("/login", (req, res)=> {
-  const { email, password} = req.body
+  const { email, password,name} = req.body
   User.findOne({ email: email}, (err, user) => {
       if(user){
           if(password === user.password ) {
-              res.send({message: "Login Successfull", user: user})
+              res.send({message: "Login Successfull", user: user,name:name})
           } else {
               res.send({ message: "Password didn't match"})
           }
@@ -49,8 +49,12 @@ app.post("/login", (req, res)=> {
   })
 }) 
 
+
+
+
+
 app.post("/login-or-register", (req, res)=> {
-  console.log('body >>>',req.body)//9/16 empty?
+  console.log('body >>>',req.body)
   const { name, email, password} = req.body
   console.log('body >>>',req.body)
   
@@ -131,6 +135,7 @@ app.post("/myvideo", (req, res) => {
     return res.status(400).json({ msg: "no file upload" });
   }
   const fileFolder = []; 
+  let textBox = '';
   
   const file = req.files.file;
   console.log("list", req.files);
@@ -153,7 +158,8 @@ app.post("/myvideo", (req, res) => {
       fileName: file.name,
       filePath: `/uploads/${file.name}`,
       uploadDate: today,
-      fileFolder
+      fileFolder,
+      textBox:''
     });
   });
 });

@@ -35,7 +35,7 @@ const breakPoints = [
           const re = /\/uploads\//g
           let strId = srcPath.replace(re,'');
           return <div>
-             <video key={srcPath} width="320" height="240" controls>
+             <video key={srcPath} width="320" height="240" controls className="d-block w-100">
             <source src={srcPath} type="video/mp4"></source>
             <source src={srcPath} type="video/ogg"></source>
             
@@ -54,7 +54,7 @@ render(){
         <>
         
         <div>
-        <Carousel breakPoints={breakPoints}>
+        <Carousel className="slide" breakPoints={breakPoints} >
           {this.renderVideos(this.state.test)}
           <video width="320" height="240" controls>
             <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4"></source>

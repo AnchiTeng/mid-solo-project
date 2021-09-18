@@ -1,5 +1,62 @@
-
 .sideBar {
+  min-height: 20vh;
+  
+  background-color: #526f72;
+  align-items: left;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+  color: rgb(85, 9, 9);
+ 
+  left: 30px;
+} 
+.userSignUpIcon {
+    float:left;
+    height: 15vmin;
+    
+}
+@media (prefers-reduced-motion: no-preference) {
+    .userSignUpIcon {
+      animation: userSignUpIcon-spin infinite 8s linear;
+    }
+  }
+
+@keyframes userSignUpIcon-spin {
+    from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+
+}
+.buttonLogin {
+  float: left;
+  margin-top: 200px;
+  margin-left: -100px;
+  width: 150px;
+  height: 45px;
+  fill:#44e9f5;
+  fill-opacity: 5.0;
+  font-family:"Open Sans";
+  font: weight 600px;
+
+}
+.buttonMyVideos {
+    float: left;
+    margin-top: 300px;
+    margin-left: -100px;
+    width: 150px;
+    height: 45px;
+}
+.buttonSetting {
+    float: left;
+    margin-top: 400px;
+    margin-left: -100px;
+    width: 150px;
+    height: 45px;
+   
+}
+/* .sideBar {
     min-height: 20vh;
     
     background-color: #526f72;
@@ -32,7 +89,7 @@
   }
   .buttonLogin {
     float: left;
-    margin-top: 200px;
+    margin-top: 100px;
     margin-left: -100px;
     width: 150px;
     height: 45px;
@@ -44,16 +101,37 @@
   }
   .buttonMyVideos {
       float: left;
-      margin-top: 300px;
-      margin-left: -100px;
+      margin-top: 200px;
+      margin-left: -150px;
       width: 150px;
       height: 45px;
   }
+  .buttonLogin1 {
+    position: relative;
+    float: left;
+    margin-top: 200px;
+    margin-left: -100px;
+    width: 150px;
+    height: 45px;
+    fill:#44e9f5;
+    fill-opacity: 5.0;
+    font-family:"Open Sans";
+    font: weight 600px;
+  
+  }
+  .buttonMyVideos1 {
+      float: left;
+      margin-top: 300px;
+      margin-left: -150px;
+      width: 150px;
+      height: 45px;
+  }
+
   .buttonSetting {
       float: left;
-      margin-top: 400px;
-      margin-left: -100px;
+      margin-top: 300px;
+      margin-left: -150px;
       width: 150px;
       height: 45px;
      
-  }
+  } */
